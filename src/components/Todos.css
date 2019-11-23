@@ -1,0 +1,114 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css");
+
+.container {
+    width: 300px;
+}
+
+.TodoItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: auto;
+    background: #badfdb;
+    border-radius: 10px;
+    color: #626979;
+    box-sizing: border-box;
+    padding: 2px;
+    margin: 1px;
+    font-family: "fontAwesome";
+    position: relative;
+    font-size: 17px;
+}
+
+.TodoItem > span {
+    width: 40px;
+    cursor: pointer;
+}
+
+.TodoItem > span i {
+    margin-left: 13px;
+}
+
+.TodoItem p {
+    flex: auto;
+    user-select: none;
+    margin: 10px 0px;
+}
+
+.TodoItem-complete > p {
+    text-decoration: line-through;
+    opacity: .3;
+}
+
+.input-group {
+    display: flex;
+    margin-bottom: 1px;
+    flex-direction: row;
+}
+
+.input-txt {
+    flex: auto;
+    box-sizing: border-box;
+    background: #badfdb;
+    border-radius: 10px;
+    margin-right: 1px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+}
+
+.input-group .input-txt span {
+    padding-left: 16px;
+    padding-top: 16px;
+    cursor: pointer;
+}
+
+.input-group .input-txt > input {
+    outline: none;
+    background: #badfdb;
+    border: none;
+    height: 50px;
+    font-size: 17px;
+    margin-left: 15px;
+    color: #626979;
+    box-sizing: border-box;
+}
+
+.input-group > button {
+    border: none;
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 200ms all;
+    outline: none;
+    background: #9be3de;
+    user-select: none;
+}
+
+.input-group > button:hover {
+    background: #ffe3ed;
+}
+
+.footer {
+    display: flex;   
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 1px;
+    background: #badfdb;
+    border-radius: 10px;
+    height: 30px;
+}
+
+.footer > button {
+    outline: none;
+    border: none;
+    background: #9be3de;
+    cursor: pointer;
+    transition: 200ms all;
+}
+
+.footer > button:hover {
+    background: #ffe3ed;
+}
