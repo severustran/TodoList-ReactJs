@@ -13,6 +13,7 @@ class NewTodo extends Component {
         this.setState({
             tempValue: e.target.value
         });
+        e.preventDefault();
     }
 
     clearInput = () => {
