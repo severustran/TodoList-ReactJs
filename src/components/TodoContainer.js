@@ -7,8 +7,8 @@ export default class TodoContainer extends Component {
     constructor(props){
         super(props);
         this.state = {
-            inputValue: "",
-            toggle: true,
+            toggle: false,
+            show: 'all',
             todoLists: [
           { 
             title: 'Go jogging',
@@ -46,7 +46,6 @@ export default class TodoContainer extends Component {
             todoLists.push({title: value, isCompleted: false});
             this.setState({
                 todoLists,
-                inputValue: "",
                 toggle: true
             });
         } else {
@@ -54,14 +53,50 @@ export default class TodoContainer extends Component {
         }
     }
 
+    toggleAll = () => {
+        const todoLists = [...this.state.todoLists];
+        if(!this.state.toggle) {
+            this.setState({
+                todoLists: todoLists.map( item => {
+                    return ({...item, isCompleted: true});
+                }),
+                toggle: true
+            });
+        } else {
+            this.setState({
+                todoLists: todoLists.map( item => {
+                    return ({...item, isCompleted: false});
+                }),
+                toggle: false
+            });
+        }
+    }
+
+    itemCount = () => {
+       // this.state.todoLists.filter(item => item.isCompleted).length
+    }
+
+    updateShow = condition => {
+        this.setState({show: condition});
+        console.log(condition);
+    }
+
     render() {
+        let todos = [];
+        if(this.state.show === 'all') {
+            todos = this.state.todoLists;
+        } else if (this.state.show === 'completed') {
+            todos = this.state.todoLists.filter(item => item.isCompleted);
+        } else if (this.state.show === 'uncompleted') {
+            todos = this.state.todoLists.filter(item => !item.isCompleted);
+        }
         return (
             <div className="container">
                 <NewTodo 
                     fooAddTodo={this.addNewTodo} 
-                    fooInputValue={this.state.inputValue}/>
+                    fooToggleAll={this.toggleAll}/>
                 {
-                    this.state.todoLists.length > 0 && this.state.todoLists.map((item, index) => (
+                    todos.length > 0 && todos.map((item, index) => (
                     <Todos 
                         key={ index } 
                         item={ item } 
@@ -69,9 +104,11 @@ export default class TodoContainer extends Component {
                     ))
                 }
                 {
-                    this.state.todoLists.length === 0 && 'Nothing show up here'
+                    todos.length === 0 && 'Nothing show up here'
                 }
-                <TodoFilter />
+                <TodoFilter 
+                    fooFilter={this.updateShow}
+                    itemsCount={todos.length}/>
             </div>
         )
     }

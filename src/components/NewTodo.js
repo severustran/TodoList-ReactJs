@@ -13,6 +13,7 @@ class NewTodo extends Component {
         this.setState({
             tempValue: e.target.value
         });
+        e.preventDefault();
     }
 
     clearInput = () => {
@@ -31,11 +32,15 @@ class NewTodo extends Component {
         }
     }
 
+    toggleAll = () => {
+        this.props.fooToggleAll();
+    }
+
     render() {
         return (
             <div className="input-group">
                 <div className="input-txt">
-                    <span><i className="fas fa-check"></i></span>
+                    <span onClick={this.toggleAll}><i className="fas fa-check"></i></span>
                     <input 
                         type="text" 
                         placeholder="Enter your todo" 
@@ -48,6 +53,5 @@ class NewTodo extends Component {
         )
     }
 }
-//this.showMe.bind(this, this.showMe)
 
 export default NewTodo;
