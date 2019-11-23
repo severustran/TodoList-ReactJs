@@ -40,6 +40,12 @@ export default class TodoContainer extends Component {
         }
     }
 
+    delTodo = item => {
+        this.setState({
+            todoLists: this.state.todoLists.filter(i => i!==item)
+        });
+    }
+
     addNewTodo = value => {
         if(value) {
             const todoLists = [...this.state.todoLists];
@@ -72,13 +78,8 @@ export default class TodoContainer extends Component {
         }
     }
 
-    itemCount = () => {
-       // this.state.todoLists.filter(item => item.isCompleted).length
-    }
-
     updateShow = condition => {
         this.setState({show: condition});
-        console.log(condition);
     }
 
     render() {
@@ -100,7 +101,8 @@ export default class TodoContainer extends Component {
                     <Todos 
                         key={ index } 
                         item={ item } 
-                        onClick={ this.onItemClicked(item) }/>
+                        onClick={ this.onItemClicked(item)}
+                        fooDel={() => this.delTodo(item)}/>
                     ))
                 }
                 {
